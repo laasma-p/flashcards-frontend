@@ -7,6 +7,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Hero />} />
       <Route path="/register" element={<AuthForm />} />
+      <Route path="/login" element={<AuthForm />} />
     </Routes>
   );
 }
