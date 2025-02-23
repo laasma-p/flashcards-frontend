@@ -81,7 +81,7 @@ const AuthForm = () => {
   };
 
   return (
-    <div className="h-screen flex items-center justify-center bg-white-smoke">
+    <div className="min-h-screen flex items-center justify-center bg-white-smoke py-6">
       <div className="bg-whisper p-8 rounded-lg shadow-lg w-96">
         <h2 className="text-2xl font-bold text-japanese-laurel text-center">
           {isLogin ? "Login to your account" : "Create an account"}
