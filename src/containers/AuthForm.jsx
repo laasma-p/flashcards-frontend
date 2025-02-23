@@ -22,9 +22,39 @@ const AuthForm = () => {
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const inputChangeHandler = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
+
+  const submitHandler = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:3000/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.message || "Something went wrong. Please try again later."
+        );
+      }
+
+      setSuccess(data.message || "Success! You can now log in.");
+      setError("");
+    } catch (error) {
+      setError(error.message);
+      setSuccess("");
+    }
   };
 
   return (
@@ -33,7 +63,17 @@ const AuthForm = () => {
         <h2 className="text-2xl font-bold text-japanese-laurel text-center">
           {isLogin ? "Login to your account" : "Create an account"}
         </h2>
-        <form className="mt-6">
+        {error && (
+          <div className="mt-4 p-3 bg-valencia text-white-smoke rounded-lg shadow text-center">
+            {error}
+          </div>
+        )}
+        {success && (
+          <div className="mt-4 p-3 bg-fern text-white-smoke rounded-lg shadow text-center">
+            {success}
+          </div>
+        )}
+        <form className="mt-6" onSubmit={submitHandler}>
           {!isLogin && (
             <>
               <div className="mb-4 text-night-rider">
