@@ -25,6 +25,17 @@ const AuthForm = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
+  useEffect(() => {
+    setFormData({
+      username: "",
+      firstName: "",
+      email: "",
+      password: "",
+    });
+    setError("");
+    setSuccess("");
+  }, [isLogin]);
+
   const inputChangeHandler = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
@@ -57,6 +68,12 @@ const AuthForm = () => {
 
       setSuccess(data.message || "Success! You can now log in.");
       setError("");
+      setFormData({
+        username: "",
+        firstName: "",
+        email: "",
+        password: "",
+      });
     } catch (error) {
       setError(error.message);
       setSuccess("");
