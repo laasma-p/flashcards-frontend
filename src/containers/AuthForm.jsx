@@ -33,7 +33,8 @@ const AuthForm = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/auth/register", {
+      const endpoint = isLogin ? "login" : "register";
+      const response = await fetch(`http://localhost:3000/auth/${endpoint}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,6 +48,11 @@ const AuthForm = () => {
         throw new Error(
           data.message || "Something went wrong. Please try again later."
         );
+      }
+
+      if (isLogin) {
+        localStorage.setItem("token", data.token);
+        navigate("/dashboard");
       }
 
       setSuccess(data.message || "Success! You can now log in.");
