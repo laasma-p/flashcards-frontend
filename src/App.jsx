@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router";
 import Hero from "./components/Hero";
 import AuthForm from "./containers/AuthForm";
 import Dashboard from "./containers/Dashboard";
+import Flashcards from "./containers/Flashcards";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Route path="/register" element={<AuthForm />} />
       <Route path="/login" element={<AuthForm />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/flashcards" element={<Flashcards />} />
     </Routes>
   );
 }
