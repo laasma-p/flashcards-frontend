@@ -3,6 +3,7 @@ import Hero from "./components/Hero";
 import AuthForm from "./containers/AuthForm";
 import Dashboard from "./containers/Dashboard";
 import Flashcards from "./containers/Flashcards";
+import Profile from "./components/Profile";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path="/login" element={<AuthForm />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/flashcards" element={<Flashcards />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   );
 }
